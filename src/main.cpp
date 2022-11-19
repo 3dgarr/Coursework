@@ -3,10 +3,7 @@
 void	render_map(t_board &board)
 {
 	for (size_t i = 0; i < board.map.size(); i++)
-	{
 		mvprintw(i + board.y_max/4, board.x_max/4, board.map[i].c_str());
-
-	}
 	refresh();
 }
 
@@ -19,6 +16,17 @@ void	init_screen_and_setup()
 	// nodelay(stdscr, TRUE);
 }
 
+void init_score_board(t_board &board)
+{
+	board.score_board =  newwin(5, 20, board.y_max/4-5 , board.x_max/4 -1);
+	box(board.score_board, 0, 0);
+	wrefresh(board.score_board);
+	mvprintw(board.y_max/4-5 , board.x_max/4 -1 ,"SCORE");
+	mvprintw(board.y_max/4-3 , board.x_max/4, "%d", board.score);
+	wrefresh(board.score_board);
+	refresh();
+}
+
 void	init_box_and_map(t_board &board)
 {
 	board.map = get_map();
@@ -28,33 +36,24 @@ void	init_box_and_map(t_board &board)
 	refresh();
 	keypad(board.game_board, true);
 	wrefresh(board.game_board);
+	init_score_board(board);
 }
-
-void	get_direction(t_board board, int	&direction)
-{
-	direction = wgetch(board.game_board);
-}
-
 
 int main()
 {	
 	Pacman		pac;
-	t_board		board;
-	int			direction;	
+	t_board		board;	
 
 	init_screen_and_setup();
 	init_box_and_map(board);
 	while (1)
 	{
 		render_map(board); 
-		pac.get_pac_cors(board.map);
-		get_direction(board, direction);
-		pac.go_direction(board, direction);
+		pac.go_direction(board);
 		refresh();
 		wrefresh(board.game_board);
+		wrefresh(board.score_board);
 	}
-
 	endwin();
-
 	return (0);
 }

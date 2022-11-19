@@ -30,6 +30,7 @@
 *.exe
 *.out
 *.app
+*.vscode
 
 # MyIgnores
 *.DS_Store
