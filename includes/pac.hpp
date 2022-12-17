@@ -18,6 +18,8 @@ class Pacman
 		int		get_x() const;
 		int		get_y() const;
 		void	set_direction(int key_code);
+		void	render_map(t_board &board);
+
 		~Pacman();
 };
 

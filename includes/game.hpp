@@ -9,15 +9,16 @@ class Game
 		Pacman		pac;
 		t_board		board;
 	public:
-		Game(/* args */);
+		Game();
 		~Game();
+		void	render_map(t_board &board);
+		void	init_screen_and_setup();
+		void 	init_score_board(t_board &board);
+		void	init_box_and_map(t_board &board);
+		void	init_game();
+		t_board	get_board();
+		void	start_game();
+
+
 
 };
-
-Game::Game(/* args */)
-{
-}
-
-Game::~Game()
-{
-}

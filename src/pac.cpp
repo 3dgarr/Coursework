@@ -89,7 +89,7 @@ int	Pacman::go_to_dir(char &cur_location, char	&next_location, char player, int 
 	if (next_location == '.')
 	{
 		board.score += 10;
-		mvprintw(board.y_max/4 - 3 , board.x_max/4, "%d", board.score);
+		mvprintw(board.y_max/4 - 2 , board.x_max/4, "%d", board.score);
 	}
 	cur_location = ' ';
 	next_location = player;
@@ -101,3 +101,10 @@ int	Pacman::go_to_dir(char &cur_location, char	&next_location, char player, int 
 	return 1;
 }
 
+
+void Pacman::render_map(t_board &board)
+{
+	for (size_t i = 0; i < board.map.size(); i++)
+		mvprintw(i + board.y_max/4, board.x_max/4, "%s", board.map[i].c_str());
+	refresh();
+}
