@@ -1,19 +1,18 @@
 NAME		= pacman
 SRCSDIR		= ./src
-# OBJSDIR		= objs
 INCLUDES	= ./includes
 
 SRCS		= *.cpp
 
 CC			= g++
-CFLAGS		= -Wall -Wextra -lncurses -std=c++11 -I../#-Werror 
+CFLAGS		= -Wall -Wextra -std=c++11 -I../#-Werror 
 
 
 all: $(NAME)
 
 $(NAME): $(SRCSDIR)/$(SRCS)
 	@echo "🌪  Building ..."
-	@$(CC) $(CFLAGS) -o $@ $^
+	@$(CC) $(CFLAGS) -o $@ $^ -lncurses 
 	@echo "✅ Pacman is created!"
 
 clean:

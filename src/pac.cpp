@@ -4,6 +4,7 @@ Pacman::Pacman()
 {
 	x_cor = 0;
 	y_cor = 0;
+	default_direction = KEY_RIGHT;
 }
 
 Pacman::~Pacman()
@@ -42,18 +43,26 @@ void	Pacman::get_pac_cors(my_map map)
 	}
 }
 
-int	is_key(int direction)
+
+int	Pacman::get_direction(t_board &board)
 {
-	return (direction == KEY_RIGHT || direction == KEY_DOWN || direction == KEY_LEFT || direction == KEY_UP);
+	int		direction;
+
+	direction = wgetch(board.game_board);
+	if (direction < 0)
+		direction = default_direction;
+	else
+		default_direction = direction;
+	return (direction);
+
 }
 
 void	Pacman::go_direction(t_board &board)
 {
-	int direction;
+	my_map	&map = board.map;
+	int		direction = get_direction(board);
 
 	get_pac_cors(board.map);
-	direction = wgetch(board.game_board);
-	my_map &map = board.map;
 	switch (direction)
 	{
 		case KEY_RIGHT:
@@ -85,7 +94,7 @@ int	Pacman::go_to_dir(char &cur_location, char	&next_location, char player, int 
 	cur_location = ' ';
 	next_location = player;
 	set_xy(y, x);
-	usleep(20000);
+	usleep(80000);
 	render_map(board);
 	wrefresh(board.game_board);
 	wrefresh(board.score_board);
