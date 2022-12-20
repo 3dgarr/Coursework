@@ -4,6 +4,7 @@ Pacman::Pacman()
 {
 	x_cor = 0;
 	y_cor = 0;
+	
 	default_direction = KEY_RIGHT;
 }
 

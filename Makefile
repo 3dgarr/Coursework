@@ -5,7 +5,7 @@ INCLUDES	= ./includes
 SRCS		= *.cpp
 
 CC			= g++
-CFLAGS		= -Wall -Wextra -std=c++11 -I../#-Werror 
+CFLAGS		= -g -ggdb3 -Wall -Wextra -std=c++11 -I../#-Werror 
 
 
 all: $(NAME)

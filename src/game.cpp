@@ -4,6 +4,7 @@
 
 Game::Game()
 {
+	board.score = 0;
 }
 
 Game::~Game()
@@ -64,6 +65,7 @@ void Game::init_game()
 
 void Game::start_game()
 {
+	
 	while (true)
 	{
 		render_map(board); 

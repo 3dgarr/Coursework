@@ -1,3 +1,5 @@
+#pragma once
+
 #include "main.hpp"
 #include "board.hpp"
 #include "pac.hpp"
@@ -18,7 +20,4 @@ class Game
 		void	init_game();
 		t_board	get_board();
 		void	start_game();
-
-
-
 };
