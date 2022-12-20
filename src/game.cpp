@@ -57,19 +57,20 @@ void	Game::init_box_and_map(t_board &board)
 
 void Game::init_game()
 {
-	render_map(board);
 	init_screen_and_setup();
 	init_score_board(board);
 	init_box_and_map(board);
+	render_map(board);
 }
 
 void Game::start_game()
-{
-	
+{	
+	init_game();
 	while (true)
 	{
 		render_map(board); 
-		pac.go_direction(board);
+		if (pac.go_direction(board))
+			break ;
 		wrefresh(board.game_board);
 		wrefresh(board.score_board);
 		refresh();

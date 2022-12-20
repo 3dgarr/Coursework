@@ -22,6 +22,7 @@ Menu::~Menu()
 
 void	Menu::setup_menu()
 {
+	erase();
 	menu_win = newwin(6, x_max/2, y_max/2, 5);
 	box(menu_win, 0, 0);
 	refresh();
@@ -64,36 +65,49 @@ void	Menu::make_decision(int choice, Game &game)
 			wclear(menu_win);
 			erase();
 			endwin();
-			game.init_game();
+			// game.init_game();
 			game.start_game();
 	
 		}
 		if (highlighted_item == 1)
 		{
-			erase();
-			printw("Dont judge me, it is my first time\n");
-			while (true)
-			{
-				char esc = getch();
-				if (esc == 27)//esc
-				{
-					erase();
-					break;
-				}
-			}
-			return;
-			
+			init_information();
+			return;			
 		}
-
 		if (highlighted_item == 2)
 		{
 			endwin();
 			exit (0);
 		}
-
 		refresh();	
 	}
 
+}
+
+void	Menu::init_information()
+{
+	char	esc;
+	erase();
+	
+	information = newwin(6, x_max/4 , y_max/2, 60);
+	box(information, 0, 0);
+	refresh();
+	wrefresh(information);
+	mvprintw(y_max/2 + 2, 65, "This game is created by Edgar Ghazaryan");
+	mvprintw(y_max/2 + 3, 65, "Synopsys Armenia: 2022");
+	wrefresh(information);
+	refresh();
+	while (true)
+	{
+		esc = wgetch(information);
+		if (esc == 27)//esc
+		{
+			erase();
+			wrefresh(information);
+			refresh();
+			return;	
+		}
+	}
 }
 
 void	Menu::init_menu()

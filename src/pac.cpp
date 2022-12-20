@@ -58,7 +58,7 @@ int	Pacman::get_direction(t_board &board)
 
 }
 
-void	Pacman::go_direction(t_board &board)
+bool	Pacman::go_direction(t_board &board)
 {
 	my_map	&map = board.map;
 	int		direction = get_direction(board);
@@ -77,10 +77,14 @@ void	Pacman::go_direction(t_board &board)
 			break;
 		case KEY_DOWN:
 			go_to_dir(map[y_cor][x_cor], map[y_cor + 1][x_cor], '^', x_cor, y_cor + 1, board);
-			break;		
+			break;	
+		case 27 ://esc
+			board.score = 0;
+			return true;	
 		default:
 			break;
 	}
+	return false;
 }
 
 int	Pacman::go_to_dir(char &cur_location, char	&next_location, char player, int x, int y, t_board &board)

@@ -13,7 +13,7 @@ class Pacman
 		Pacman(int y, int x);
 		Pacman();
 		void	get_pac_cors(my_map map);
-		void	go_direction(t_board &board);
+		bool	go_direction(t_board &board);
 		int		get_direction(t_board &board);
 		int		get_x() const;
 		int		get_y() const;
