@@ -30,7 +30,7 @@
 #### 4. Install make package, if you don't have: &nbsp;**<code>sudo apt install make</code>**
 #### 5. Check installation with command: &nbsp;**<code>make --version</code>**
 #### 6. Clone this repo: &nbsp;**<code>git clone https://github.com/3dgarr/Coursework.git</code>**
-#### 7. Go to directory: &nbsp;**<code>cd Coursework/code</code>**
+#### 7. Go to directory: &nbsp;**<code>cd Coursework</code>**
 #### 8. Run make and compile codes: &nbsp;**<code>make</code>**
 #### 9. Run executable: &nbsp;**<code>./pacman</code>**
-#### 10. Congrats! Now you can my pacman :)
+#### 10. Congrats! Now you can play my pacman :)
