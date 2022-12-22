@@ -19,16 +19,6 @@ void Pacman::set_xy(int y, int x)
 	y_cor = y;
 }
 
-int	Pacman::get_x() const
-{
-	return (x_cor);
-}
-
-int	Pacman::get_y() const
-{
-	return (y_cor);
-}
-
 void	Pacman::get_pac_cors(my_map map)
 {
 	for (size_t i = 0; i < map.size(); i++)
@@ -78,7 +68,7 @@ bool	Pacman::go_direction(t_board &board)
 		case KEY_DOWN:
 			go_to_dir(map[y_cor][x_cor], map[y_cor + 1][x_cor], '^', x_cor, y_cor + 1, board);
 			break;	
-		case 27 ://esc
+		case ESC ://esc
 			board.score = 0;
 			return true;	
 		default:

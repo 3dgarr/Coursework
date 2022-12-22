@@ -5,6 +5,8 @@
 Game::Game()
 {
 	board.score = 0;
+	getmaxyx(stdscr, board.y_max, board.x_max);
+
 }
 
 Game::~Game()
@@ -22,9 +24,9 @@ void	Game::render_map(t_board &board)
 
 void	Game::init_screen_and_setup()
 {
-	initscr();
-	cbreak();
-	noecho();
+	// initscr();
+	// cbreak();
+	// noecho();
 	curs_set(0);
 	nodelay(stdscr, TRUE);
 }
@@ -44,7 +46,6 @@ void	Game::init_score_board(t_board &board)
 void	Game::init_box_and_map(t_board &board)
 {
 	board.map = get_map();
-	getmaxyx(stdscr, board.y_max, board.x_max);
 	board.game_board = newwin(board.map.size() + 2, board.map[1].length() + 2, board.y_max/4 - 1, board.x_max/4 - 1);
 	box(board.game_board, 0, 0);
 	refresh();
@@ -58,7 +59,6 @@ void	Game::init_box_and_map(t_board &board)
 void Game::init_game()
 {
 	init_screen_and_setup();
-	init_score_board(board);
 	init_box_and_map(board);
 	render_map(board);
 }
@@ -75,9 +75,4 @@ void Game::start_game()
 		wrefresh(board.score_board);
 		refresh();
 	}
-}
-
-t_board	Game::get_board()
-{
-	return	board;
 }

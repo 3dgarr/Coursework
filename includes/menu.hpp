@@ -3,6 +3,8 @@
 #include "./main.hpp"
 #include "./game.hpp"
 
+constexpr	int	ENTER = 10;
+
 
 class Menu
 {
@@ -22,7 +24,7 @@ class Menu
 		void	init_information();
 		void	setup_menu();
 		void	render_menu();
-		void	make_decision(int choice, Game &game);
+		void	make_decision(int choice);
 
 
 };

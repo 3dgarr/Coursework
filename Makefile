@@ -5,7 +5,7 @@ INCLUDES	= ./includes
 SRCS		= *.cpp
 
 CC			= g++
-CFLAGS		= -g -ggdb3 -Wall -Wextra -std=c++11 -I../#-Werror 
+CFLAGS		=-Wall -Wextra -std=c++11 -I../#-Werror 
 
 
 all: $(NAME)
@@ -15,15 +15,13 @@ $(NAME): $(SRCSDIR)/$(SRCS)
 	@$(CC) $(CFLAGS) -o $@ $^ -lncurses 
 	@echo "✅ Pacman is created!"
 
-clean:
-
-fclean: clean
+clean: 
 	@rm -rf $(NAME)
 	@echo "🧨  Destroyed"
 
-re: fclean all
+re: clean all
 
-.PHONY: all clean fclean re 
+.PHONY: all clean re 
 
 # $@ evaluates to all
 # $< evaluates to library.cpp
