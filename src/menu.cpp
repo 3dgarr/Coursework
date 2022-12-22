@@ -37,7 +37,7 @@ void	Menu::render_menu()
 	{	
 		if (i == highlighted_item)
 			wattron(menu_win, A_REVERSE);
-		mvwprintw(menu_win, i + 1, 1, "%s", menu_items[i].c_str());
+		mvwprintw(menu_win, i + 1, 11, "%s", menu_items[i].c_str());
 		wattroff(menu_win, A_REVERSE);
 	}
 }

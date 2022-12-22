@@ -84,9 +84,10 @@ int	Pacman::go_to_dir(char &cur_location, char	&next_location, char player, int 
 	{
 		board.score += 10;
 		mvprintw(board.y_max/4 - 2 , board.x_max/4, "%d", board.score);
+
 	}
 	if (next_location == '@')
-		finish_game(board, (char *)"GAME OVER!");
+		finish_game(board, "GAME OVER!");
 	cur_location = ' ';
 	next_location = player;
 	set_xy(y, x);
@@ -95,7 +96,7 @@ int	Pacman::go_to_dir(char &cur_location, char	&next_location, char player, int 
 	wrefresh(board.game_board);
 	wrefresh(board.score_board);
 	if (board.score == max_score * 10)
-		finish_game(board, (char *)"YOU WON !!");
+		finish_game(board, "YOU WON !!");
 	return (1);
 }
 
@@ -107,10 +108,10 @@ void Pacman::render_map(t_board &board)
 	refresh();
 }
 
-void	Pacman::finish_game(t_board	&board, char *msg)
+void	Pacman::finish_game(t_board	&board, std::string msg)
 {
 	wattron(stdscr, A_REVERSE);
-	mvprintw(board.y_max/4 - 2 , board.x_max/2-10, "%s",  msg);
+	mvprintw(board.y_max/4 - 2 , board.x_max/2-10, "%s",  msg.c_str());
 	wattroff(stdscr, A_REVERSE);
 	refresh();
 	sleep(2);

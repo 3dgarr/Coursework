@@ -16,7 +16,7 @@ class Pacman
 		void			render_map(t_board &board);
 		void			get_pac_cors(my_map map);
 		int				get_direction(t_board &board);
-		void			finish_game(t_board	&board, char *msg);
+		void			finish_game(t_board	&board, std::string msg);
 		~Pacman();
 };
 
