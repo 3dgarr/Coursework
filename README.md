@@ -28,6 +28,7 @@
 #### 2. Install GCC compiler, if you don't have: &nbsp;**<code>sudo apt install build-essential</code>**
 #### 3. Check installation with command: &nbsp;**<code>gcc --version</code>**
 #### 4. Install make package, if you don't have: &nbsp;**<code>sudo apt install make</code>**
+#### 5. Install ncurses library with command:  &nbsp;**<code>sudo apt-get install libncurses5-dev libncursesw5-dev</code>**
 #### 5. Check installation with command: &nbsp;**<code>make --version</code>**
 #### 6. Clone this repo: &nbsp;**<code>git clone https://github.com/3dgarr/Coursework.git</code>**
 #### 7. Go to directory: &nbsp;**<code>cd Coursework</code>**
