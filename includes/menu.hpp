@@ -5,7 +5,6 @@
 
 constexpr	int	ENTER = 10;
 
-
 class Menu
 {
 	private:

@@ -7,6 +7,7 @@ Game::Game()
 	board.score = 0;
 	getmaxyx(stdscr, board.y_max, board.x_max);
 
+
 }
 
 Game::~Game()
@@ -24,9 +25,6 @@ void	Game::render_map(t_board &board)
 
 void	Game::init_screen_and_setup()
 {
-	// initscr();
-	// cbreak();
-	// noecho();
 	curs_set(0);
 	nodelay(stdscr, TRUE);
 }
@@ -43,9 +41,13 @@ void	Game::init_score_board(t_board &board)
 	refresh();
 }
 
+
+
 void	Game::init_box_and_map(t_board &board)
 {
 	board.map = get_map();
+	board.max_score = get_max_score(board.map);
+	board.max_score = get_max_score(board.map);
 	board.game_board = newwin(board.map.size() + 2, board.map[1].length() + 2, board.y_max/4 - 1, board.x_max/4 - 1);
 	box(board.game_board, 0, 0);
 	refresh();
@@ -69,10 +71,52 @@ void Game::start_game()
 	while (true)
 	{
 		render_map(board); 
-		if (pac.go_direction(board))
+		if (pac.go_direction(board, board.max_score))
 			break ;
 		wrefresh(board.game_board);
 		wrefresh(board.score_board);
 		refresh();
 	}
+}
+
+std::vector<std::string> Game::get_map()
+{
+	std::vector<std::string> map { 
+		"#################################################################",
+		"## ........................... ### ........................... ##",
+		"## . ####### . ############# . ### . ############# . ####### . ##",
+		"## o ####### . ############# . ### . ############# . ####### o ##",
+		"## ........................................................... ##",
+		"## . ####### . ### . ####################### . ### . ####### . ##",
+		"## . ####### . ### ........... ### ........... ### . ####### . ##",
+		"## ........... ############# . ### . ############# ........... ##",
+		"############ . ############# . ### . ############# . ############",
+		"############ . ### ........................... ### . ############",
+		"############ . ###   ########## @ ##########   ### . ############",
+		"############ . ###   #######         #######   ### . ############",
+		"############ . ###   #######    @    #######   ### . ############",
+		"## ...........       ####### @       #######       ........... ##",
+		"## . ####### . ###   #######################   ### . ####### . ##",
+		"## o.... ### ...................o................... ### ....o ##",
+		"###### . ### . ### . ####################### . ### . ### . ######",
+		"## ........... ### ........... ### ........... ### ........... ##",
+		"## . ####################### . ### . ####################### . ##",
+		"## . ####################### . ### . ####################### . ##",
+		"## .<......................................................... ##",
+		"#################################################################"
+	};
+	return (map);
+}
+
+
+unsigned int	Game::get_max_score(std::vector<std::string> map)
+{
+	unsigned int	score = 0;
+	for (size_t i = 0; i < map.size(); i++)
+	{
+		for (size_t j = 0; j < map[i].size(); j++)
+			if (map[i][j] == '.')
+				score++;
+	}
+	return (score) ;	
 }

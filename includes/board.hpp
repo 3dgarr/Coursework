@@ -12,4 +12,5 @@ typedef struct s_board
 	WINDOW			*game_board;
 	WINDOW			*score_board;
 	unsigned int	score;
+	unsigned int	max_score;
 }	t_board;

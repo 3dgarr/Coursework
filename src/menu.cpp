@@ -90,7 +90,9 @@ void	Menu::init_information()
 	information = newwin(13, x_max/4 , y_max/2 - 7, 60);
 	box(information, 0, 0);
 	refresh();
+	wattron(stdscr, A_REVERSE);
 	mvprintw(y_max / 2 - 6, 75, "INSTRUCTIONS");
+	wattroff(stdscr, A_REVERSE);
 	mvprintw(y_max / 2 - 4, 65, "Arrow up    -> pac goes up");
 	mvprintw(y_max / 2 - 3, 65, "Arrow down  -> pac goes down");
 	mvprintw(y_max / 2 - 2, 65, "Arrow left  -> pac goes left");
@@ -104,7 +106,7 @@ void	Menu::init_information()
 	while (true)
 	{
 		esc = wgetch(information);
-		if (esc == ESC)//esc
+		if (esc == ESC)
 		{
 			erase();
 			wrefresh(information);

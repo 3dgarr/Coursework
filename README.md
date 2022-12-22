@@ -17,9 +17,9 @@
 #### &nbsp;&nbsp; <code><strong>arrow_up</strong></code>
 #### 2. Move down with keys: 
 #### &nbsp;&nbsp; <code><strong>arrow_down</strong></code>
-#### 1. Move left with keys: 
+#### 3. Move left with keys: 
 #### &nbsp;&nbsp; <code><strong>arrow_left</strong></code>
-#### 2. Move right with keys: 
+#### 4. Move right with keys: 
 #### &nbsp;&nbsp; <code><strong>arrow_right</strong></code>
 
 

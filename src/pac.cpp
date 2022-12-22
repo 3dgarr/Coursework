@@ -4,7 +4,6 @@ Pacman::Pacman()
 {
 	x_cor = 0;
 	y_cor = 0;
-	
 	default_direction = KEY_RIGHT;
 }
 
@@ -48,7 +47,7 @@ int	Pacman::get_direction(t_board &board)
 
 }
 
-bool	Pacman::go_direction(t_board &board)
+bool	Pacman::go_direction(t_board &board,  unsigned int max_score)
 {
 	my_map	&map = board.map;
 	int		direction = get_direction(board);
@@ -57,18 +56,18 @@ bool	Pacman::go_direction(t_board &board)
 	switch (direction)
 	{
 		case KEY_RIGHT:
-			go_to_dir(map[y_cor][x_cor], map[y_cor][x_cor + 1], '<', x_cor + 1, y_cor, board);
+			go_to_dir(map[y_cor][x_cor], map[y_cor][x_cor + 1], '<', x_cor + 1, y_cor, board, max_score);
 			break;
 		case KEY_LEFT:
-			go_to_dir(map[y_cor][x_cor], map[y_cor][x_cor - 1], '>', x_cor - 1, y_cor, board);
+			go_to_dir(map[y_cor][x_cor], map[y_cor][x_cor - 1], '>', x_cor - 1, y_cor, board, max_score);
 			break;
 		case KEY_UP:
-			go_to_dir(map[y_cor][x_cor], map[y_cor - 1][x_cor], 'v', x_cor, y_cor - 1, board);
+			go_to_dir(map[y_cor][x_cor], map[y_cor - 1][x_cor], 'v', x_cor, y_cor - 1, board, max_score);
 			break;
 		case KEY_DOWN:
-			go_to_dir(map[y_cor][x_cor], map[y_cor + 1][x_cor], '^', x_cor, y_cor + 1, board);
+			go_to_dir(map[y_cor][x_cor], map[y_cor + 1][x_cor], '^', x_cor, y_cor + 1, board, max_score);
 			break;	
-		case ESC ://esc
+		case ESC :
 			board.score = 0;
 			return true;	
 		default:
@@ -77,7 +76,7 @@ bool	Pacman::go_direction(t_board &board)
 	return false;
 }
 
-int	Pacman::go_to_dir(char &cur_location, char	&next_location, char player, int x, int y, t_board &board)
+int	Pacman::go_to_dir(char &cur_location, char	&next_location, char player, int x, int y, t_board &board, unsigned int max_score)
 {
 	if (next_location == '#')
 		return 0;
@@ -86,6 +85,8 @@ int	Pacman::go_to_dir(char &cur_location, char	&next_location, char player, int 
 		board.score += 10;
 		mvprintw(board.y_max/4 - 2 , board.x_max/4, "%d", board.score);
 	}
+	if (next_location == '@')
+		finish_game(board, (char *)"GAME OVER!");
 	cur_location = ' ';
 	next_location = player;
 	set_xy(y, x);
@@ -93,7 +94,9 @@ int	Pacman::go_to_dir(char &cur_location, char	&next_location, char player, int 
 	render_map(board);
 	wrefresh(board.game_board);
 	wrefresh(board.score_board);
-	return 1;
+	if (board.score == max_score * 10)
+		finish_game(board, (char *)"YOU WON !!");
+	return (1);
 }
 
 
@@ -103,3 +106,16 @@ void Pacman::render_map(t_board &board)
 		mvprintw(i + board.y_max/4, board.x_max/4, "%s", board.map[i].c_str());
 	refresh();
 }
+
+void	Pacman::finish_game(t_board	&board, char *msg)
+{
+	wattron(stdscr, A_REVERSE);
+	mvprintw(board.y_max/4 - 2 , board.x_max/2-10, "%s",  msg);
+	wattroff(stdscr, A_REVERSE);
+	refresh();
+	sleep(2);
+	endwin();
+	exit(0);
+}
+
+
